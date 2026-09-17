@@ -1,0 +1,170 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── DESIGN TOKENS ─────────────────────────────────────────────
+   Ported from the Managed Shipping Analytics Suite (dark-first).
+   Exposed to Tailwind as bg-ms-*, text-ms-*, border-ms-* utilities. */
+@theme inline {
+  --color-ms-bg: var(--ms-bg);
+  --color-ms-surface: var(--ms-surface);
+  --color-ms-surface-hi: var(--ms-surface-hi);
+  --color-ms-border: var(--ms-border);
+  --color-ms-border-hi: var(--ms-border-hi);
+  --color-ms-accent: var(--ms-accent);
+  --color-ms-accent-sub: var(--ms-accent-sub);
+  --color-ms-green: var(--ms-green);
+  --color-ms-green-sub: var(--ms-green-sub);
+  --color-ms-amber: var(--ms-amber);
+  --color-ms-amber-sub: var(--ms-amber-sub);
+  --color-ms-violet: var(--ms-violet);
+  --color-ms-violet-sub: var(--ms-violet-sub);
+  --color-ms-slate: var(--ms-slate);
+  --color-ms-slate-sub: var(--ms-slate-sub);
+  --color-ms-txt: var(--ms-txt);
+  --color-ms-txt2: var(--ms-txt-2);
+  --color-ms-txt3: var(--ms-txt-3);
+
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-brand: var(--font-sora), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), 'Courier New', monospace;
+}
+
+/* dark-first defaults */
+:root {
+  --ms-bg: #090c17;
+  --ms-surface: #0d1222;
+  --ms-surface-hi: #121929;
+  --ms-border: #192338;
+  --ms-border-hi: #243450;
+  --ms-accent: #4c8ef7;
+  --ms-accent-sub: #091b44;
+  --ms-green: #34d399;
+  --ms-green-sub: #091e14;
+  --ms-amber: #fbbf24;
+  --ms-amber-sub: #1e1405;
+  --ms-violet: #a78bfa;
+  --ms-violet-sub: #160f30;
+  --ms-slate: #4b607e;
+  --ms-slate-sub: #0f1520;
+  --ms-txt: #dce8f6;
+  --ms-txt-2: #7b92b2;
+  --ms-txt-3: #48607c;
+}
+
+/* light values, applied via system pref (when no explicit class) or .light */
+@media (prefers-color-scheme: light) {
+  :root:not(.dark) {
+    --ms-bg: #f3f7fc;
+    --ms-surface: #ffffff;
+    --ms-surface-hi: #ecf1fa;
+    --ms-border: #dae3f2;
+    --ms-border-hi: #c4d2e8;
+    --ms-accent: #1d50cc;
+    --ms-accent-sub: #e5eeff;
+    --ms-green: #047857;
+    --ms-green-sub: #ecfdf5;
+    --ms-amber: #b45309;
+    --ms-amber-sub: #fef3c7;
+    --ms-violet: #6d28d9;
+    --ms-violet-sub: #f5f3ff;
+    --ms-slate: #8aa0bc;
+    --ms-slate-sub: #f1f5fc;
+    --ms-txt: #0b1526;
+    --ms-txt-2: #3c5270;
+    --ms-txt-3: #7b92b2;
+  }
+}
+
+.light {
+  --ms-bg: #f3f7fc;
+  --ms-surface: #ffffff;
+  --ms-surface-hi: #ecf1fa;
+  --ms-border: #dae3f2;
+  --ms-border-hi: #c4d2e8;
+  --ms-accent: #1d50cc;
+  --ms-accent-sub: #e5eeff;
+  --ms-green: #047857;
+  --ms-green-sub: #ecfdf5;
+  --ms-amber: #b45309;
+  --ms-amber-sub: #fef3c7;
+  --ms-violet: #6d28d9;
+  --ms-violet-sub: #f5f3ff;
+  --ms-slate: #8aa0bc;
+  --ms-slate-sub: #f1f5fc;
+  --ms-txt: #0b1526;
+  --ms-txt-2: #3c5270;
+  --ms-txt-3: #7b92b2;
+}
+
+.dark {
+  --ms-bg: #090c17;
+  --ms-surface: #0d1222;
+  --ms-surface-hi: #121929;
+  --ms-border: #192338;
+  --ms-border-hi: #243450;
+  --ms-accent: #4c8ef7;
+  --ms-accent-sub: #091b44;
+  --ms-green: #34d399;
+  --ms-green-sub: #091e14;
+  --ms-amber: #fbbf24;
+  --ms-amber-sub: #1e1405;
+  --ms-violet: #a78bfa;
+  --ms-violet-sub: #160f30;
+  --ms-slate: #4b607e;
+  --ms-slate-sub: #0f1520;
+  --ms-txt: #dce8f6;
+  --ms-txt-2: #7b92b2;
+  --ms-txt-3: #48607c;
+}
+
+html {
+  font-size: 15px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--ms-bg);
+  color: var(--ms-txt);
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+}
+
+@keyframes ms-livepulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.28;
+  }
+}
+.ms-livepulse {
+  animation: ms-livepulse 2.4s ease-in-out infinite;
+}
+
+@keyframes ms-ping {
+  75%,
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+.ms-ping {
+  animation: ms-ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ms-livepulse,
+  .ms-ping {
+    animation: none !important;
+  }
+}
+
+/* thin scrollbars inside code / drawer surfaces */
+.ms-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--ms-border-hi) transparent;
+}
