@@ -54,7 +54,8 @@ export function Portal() {
   const visible = useMemo(() => {
     const q = search.trim().toLowerCase()
     return regionReports.filter((r) => {
-      const matchesFilter = filter === 'all' ? true : r.status === filter
+      const matchesFilter =
+        filter === 'all' ? r.status !== 'Planned' : r.status === filter
       const section = SECTIONS.find((s) => s.id === r.section)
       const matchesSearch =
         !q ||
