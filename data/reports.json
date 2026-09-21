@@ -81,7 +81,7 @@
       "status": "Current",
       "cadence": "Weekly",
       "generatedDate": "2026-09-07",
-      "latestUrl": "go/wbr",
+      "latestUrl": "https://go.corp.ebay.com/mswbr",
       "history": [
         { "date": "2026-08-31", "url": "https://ebayinc.sharepoint.com/:x:/r/sites/NASellerShippingAnalytics/Shared%20Documents/Shipping%20Analytics/UK%20Managed%20shipping%20WBR/UK%20MS%20WBR_V2_copy.xlsx?d=w346d586eb3fd450d93ef9b12048e9d49&csf=1&web=1&e=FnefwZ" }
       ],
@@ -277,12 +277,12 @@
       "notes": "The only built loss report. Ad-hoc pull, US-scoped. Reads directly against the GPLT Shortpaid glossary definition — carrier charge minus seller recovery, where positive.",
       "section": "loss_cost",
       "region": "us",
-      "name": "GPLT Shortpaid Analysis",
-      "description": "Ground Parcel LTL cases where eBay paid carrier charges but recovered less from sellers. Loss by carrier, zone, seller segment, and item type.",
+      "name": "USPS Shortpaid Analysis",
+      "description": "USPS cases where eBay paid carrier charges but recovered less from sellers. Loss by carrier, zone, seller segment, and item type.",
       "status": "Current",
       "cadence": "Ad-hoc",
       "generatedDate": "2026-09-09",
-      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/GPLT-Shortpaid-20260909.html",
+      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/USPS-Shortpaid-Deepdive-20260915.html",
       "history": [],
       "sparkline": [64, 71, 68, 77, 73, 81, 88, 84],
       "sparkLabel": "Weekly shortpaid loss ($k)"
