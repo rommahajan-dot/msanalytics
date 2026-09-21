@@ -1,0 +1,353 @@
+{
+  "meta": {
+    "portalName": "Managed Shipping Analytics Suite",
+    "portalDate": "2026-09-14",
+    "glossary": [
+      {
+        "term": "Orders",
+        "definition": "Distinct count of orders. The base denominator for label-adoption and funnel calculations across every report in the portal.",
+        "note": "Each order is counted once.",
+        "relatedReportIds": ["g-wbr", "g-funnel", "g-eligibility"]
+      },
+      {
+        "term": "Label Adoption",
+        "definition": "Share of eligible orders that resulted in a Managed Shipping label purchase. Headline conversion metric for the funnel.",
+        "note": "Labels divided by eligible orders.",
+        "relatedReportIds": ["g-wbr", "g-wbr-bau", "de-vi", "g-funnel"]
+      },
+      {
+        "term": "Label Maturity Window",
+        "definition": "Rows are restricted to the window where label outcomes are settled, preventing recent, still-maturing weeks from distorting rates.",
+        "note": "Label maturity window: weeks -12 to -3.",
+        "relatedReportIds": ["g-wbr", "g-eligibility"]
+      },
+      {
+        "term": "Local Orders Excluded",
+        "definition": "Local pickup and local delivery orders are excluded from all Managed Shipping metrics — they never enter the labeling funnel.",
+        "note": "Local orders are removed before any metric is computed.",
+        "relatedReportIds": ["g-wbr", "g-funnel", "us-gplt"]
+      },
+      {
+        "term": "Completed Checkouts",
+        "definition": "Incomplete and cancelled checkouts are removed so the funnel only counts genuinely placed orders.",
+        "note": "Cancelled checkouts are excluded.",
+        "relatedReportIds": ["g-wbr", "g-eligibility"]
+      },
+      {
+        "term": "GPLT Shortpaid",
+        "definition": "Ground Parcel LTL shipments where the carrier charge eBay paid exceeded the amount recovered from the seller — a direct loss.",
+        "note": "Carrier charge minus seller recovery, when positive.",
+        "relatedReportIds": ["us-gplt", "g-losses"]
+      },
+      {
+        "term": "VI (Variant Item)",
+        "definition": "Listings with size, color, or style variants. Tracked separately because their eligibility and adoption behavior differ from single-SKU items.",
+        "relatedReportIds": ["de-vi"]
+      },
+      {
+        "term": "BAU Baseline",
+        "definition": "Business-as-usual counterfactual: the same metrics computed as if no experiment treatment were applied, isolating incremental impact.",
+        "relatedReportIds": ["g-wbr-bau"]
+      },
+      {
+        "term": "M2M",
+        "definition": "Managed-to-Managed shipping — orders flowing entirely through eBay-managed carrier relationships end to end.",
+        "relatedReportIds": ["g-m2m", "au-m2m"]
+      },
+      {
+        "term": "FNL",
+        "definition": "Final listing — a listing that reached a terminal, purchasable state and is counted in eligibility-waterfall denominators.",
+        "relatedReportIds": ["g-eligibility"]
+      }
+    ]
+  },
+  "reports": [
+    {
+      "id": "g-wbr",
+      "section": "wbr",
+      "region": "global",
+      "name": "Weekly Business Review",
+      "description": "GMV, label volumes, label adoption, carrier mix, and seller-level anomalies. Week-over-week and year-over-year comparisons across the full managed shipping program.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-07",
+      "latestUrl": "https://analytics.internal/ms/WBR-20260907.html",
+      "history": [
+        { "date": "2026-08-31", "url": "https://analytics.internal/ms/WBR-20260831.html" },
+        { "date": "2026-08-24", "url": "https://analytics.internal/ms/WBR-20260824.html" }
+      ],
+      "sparkline": [812, 903, 878, 951, 1002, 1044, 1090, 1137],
+      "sparkLabel": "Weekly label volume (k)"
+    },
+    {
+      "id": "g-wbr-bau",
+      "section": "wbr",
+      "region": "global",
+      "name": "WBR — BAU Baseline",
+      "description": "Counterfactual view showing the same metrics absent experiment treatment — isolates the incremental effect of managed shipping changes from underlying market movement.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-07",
+      "latestUrl": "https://analytics.internal/ms/WBR-BAU-20260907.html",
+      "history": [],
+      "sparkline": [800, 815, 822, 831, 845, 858, 869, 880],
+      "sparkLabel": "BAU baseline volume (k)"
+    },
+    {
+      "id": "uk-wbr",
+      "section": "wbr",
+      "region": "uk",
+      "name": "UK Weekly Business Review",
+      "description": "UK-specific weekly review of GMV, label volumes, and adoption, with carrier mix and seller anomalies scoped to the United Kingdom program.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-05",
+      "latestUrl": "https://analytics.internal/ms/UK-WBR-20260905.html",
+      "history": [
+        { "date": "2026-08-29", "url": "https://analytics.internal/ms/UK-WBR-20260829.html" }
+      ],
+      "sparkline": [341, 358, 372, 366, 389, 401, 418, 437],
+      "sparkLabel": "Weekly label volume (k)"
+    },
+    {
+      "id": "g-funnel",
+      "section": "funnel",
+      "region": "global",
+      "name": "Order-to-Label Funnel",
+      "description": "Step-by-step conversion from order creation through label purchase — broken down by seller cohort, zone, item category, and carrier eligibility.",
+      "status": "Current",
+      "cadence": "Ad-hoc",
+      "generatedDate": "2026-09-08",
+      "latestUrl": "https://analytics.internal/ms/Order-to-Label-Funnel-20260908.html",
+      "history": [],
+      "sparkline": [100, 88, 74, 61, 58, 55, 52, 49],
+      "sparkLabel": "Conversion by step (%)"
+    },
+    {
+      "id": "g-eligibility",
+      "section": "funnel",
+      "region": "global",
+      "name": "Eligibility Waterfall",
+      "description": "Total C2C sellers, orders, and FNLs stepped down through each eligibility gate — ramp, category, price point, weight, prohibited items — to the final MS eligible population.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-14",
+      "latestUrl": "https://analytics.internal/ms/Eligibility-Waterfall-20260914.html",
+      "history": [],
+      "sparkline": [100, 92, 81, 70, 58, 47, 39, 33],
+      "sparkLabel": "Population through gates (%)"
+    },
+    {
+      "id": "g-seller-cohort",
+      "section": "funnel",
+      "region": "global",
+      "name": "Seller Funnel Cohort",
+      "description": "Longitudinal funnel by seller vintage — whether newly enrolled sellers improve conversion over time, or churn at the label purchase step.",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "us-expansion",
+      "section": "expansion",
+      "region": "us",
+      "name": "US Expansion Analysis",
+      "description": "Geographic rollout progress, seller adoption, volume ramp, and week-over-week expansion velocity across newly enrolled United States cohorts.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-07",
+      "latestUrl": "https://analytics.internal/ms/US-Expansion-20260907.html",
+      "history": [
+        { "date": "2026-08-31", "url": "https://analytics.internal/ms/US-Expansion-20260831.html" }
+      ],
+      "sparkline": [120, 180, 265, 360, 470, 590, 705, 838],
+      "sparkLabel": "Sellers enrolled (cumulative)"
+    },
+    {
+      "id": "us-adoption",
+      "section": "expansion",
+      "region": "us",
+      "name": "Seller Adoption Health",
+      "description": "Active vs. dormant vs. churned sellers by enrollment week. Tracks adoption rate by cohort vintage and surfaces early warning signals for at-risk accounts.",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "uk-expansion",
+      "section": "expansion",
+      "region": "uk",
+      "name": "UK Expansion Analysis",
+      "description": "Rollout progress and seller adoption across the United Kingdom, with volume ramp and week-over-week expansion velocity for newly enrolled cohorts.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-05",
+      "latestUrl": "https://analytics.internal/ms/UK-Expansion-20260905.html",
+      "history": [],
+      "sparkline": [40, 72, 118, 165, 214, 268, 321, 372],
+      "sparkLabel": "Sellers enrolled (cumulative)"
+    },
+    {
+      "id": "de-expansion",
+      "section": "expansion",
+      "region": "de",
+      "name": "DE Expansion Analysis",
+      "description": "Rollout progress and seller adoption across Germany, tracking volume ramp and expansion velocity for the newly launched cohorts.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-03",
+      "latestUrl": "https://analytics.internal/ms/DE-Expansion-20260903.html",
+      "history": [],
+      "sparkline": [12, 28, 51, 82, 121, 168, 219, 271],
+      "sparkLabel": "Sellers enrolled (cumulative)"
+    },
+    {
+      "id": "de-vi",
+      "section": "expansion",
+      "region": "de",
+      "name": "Expansion — VI Funnel",
+      "description": "Variant item (VI) eligibility and label adoption within the German expansion cohort — tracks which VI categories are converting vs. where the rate lags the BAU funnel.",
+      "status": "Current",
+      "cadence": "Ad-hoc",
+      "generatedDate": "2026-09-03",
+      "latestUrl": "https://analytics.internal/ms/DE-Expansion-VI-20260903.html",
+      "history": [],
+      "sparkline": [38, 41, 40, 44, 46, 49, 48, 52],
+      "sparkLabel": "VI label adoption (%)"
+    },
+    {
+      "id": "fr-expansion",
+      "section": "expansion",
+      "region": "fr",
+      "name": "FR Expansion Analysis",
+      "description": "Early rollout tracking for France — seller onboarding, first-label activation, and week-over-week ramp for the pilot cohort.",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "it-expansion",
+      "section": "expansion",
+      "region": "it",
+      "name": "IT Expansion Analysis",
+      "description": "Early rollout tracking for Italy — seller onboarding, first-label activation, and week-over-week ramp for the pilot cohort.",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "au-expansion",
+      "section": "expansion",
+      "region": "au",
+      "name": "AU Expansion Analysis",
+      "description": "Rollout progress and seller adoption across Australia, tracking volume ramp and expansion velocity for newly enrolled cohorts.",
+      "status": "Current",
+      "cadence": "Weekly",
+      "generatedDate": "2026-09-01",
+      "latestUrl": "https://analytics.internal/ms/AU-Expansion-20260901.html",
+      "history": [],
+      "sparkline": [18, 33, 55, 79, 104, 132, 161, 190],
+      "sparkLabel": "Sellers enrolled (cumulative)"
+    },
+    {
+      "id": "us-gplt",
+      "section": "loss_cost",
+      "region": "us",
+      "name": "GPLT Shortpaid Analysis",
+      "description": "Ground Parcel LTL cases where eBay paid carrier charges but recovered less from sellers. Loss by carrier, zone, seller segment, and item type.",
+      "status": "Current",
+      "cadence": "Ad-hoc",
+      "generatedDate": "2026-09-09",
+      "latestUrl": "https://analytics.internal/ms/US-GPLT-Shortpaid-20260909.html",
+      "history": [],
+      "sparkline": [64, 71, 68, 77, 73, 81, 88, 84],
+      "sparkLabel": "Weekly shortpaid loss ($k)"
+    },
+    {
+      "id": "g-losses",
+      "section": "loss_cost",
+      "region": "global",
+      "name": "MS Losses Tracker",
+      "description": "Rolling tracker of lost-in-transit, arrived-damaged, and returns losses by reason code and carrier. The HTML report has not yet been generated.",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "g-cogs",
+      "section": "loss_cost",
+      "region": "global",
+      "name": "Unit Economics / COGS",
+      "description": "Cost per label by carrier and zone: postage cost, eBay subsidy, seller recovery, and net margin. Replaces ad-hoc pulls from Finance COGS.",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "g-m2m",
+      "section": "live",
+      "region": "global",
+      "name": "M2M Insights Monitor",
+      "description": "Live operational dashboard for Managed-to-Managed shipping: real-time label rates, seller activity, zone distribution, and carrier routing — queried fresh on every load.",
+      "status": "Live",
+      "cadence": "On demand",
+      "generatedDate": null,
+      "latestUrl": "https://m2minsights-m2minsights.vip.ebay.com/",
+      "history": [],
+      "sparkline": [58, 62, 55, 71, 66, 74, 69, 78],
+      "sparkLabel": "Labels / min (last 8h)"
+    },
+    {
+      "id": "au-m2m",
+      "section": "live",
+      "region": "au",
+      "name": "M2M Insights Monitor — AU",
+      "description": "Live operational dashboard for Australian Managed-to-Managed shipping: real-time label rates, seller activity, and carrier routing across AU zones.",
+      "status": "Live",
+      "cadence": "On demand",
+      "generatedDate": null,
+      "latestUrl": "https://m2minsights-m2minsights.vip.ebay.com/au",
+      "history": [],
+      "sparkline": [14, 17, 15, 21, 19, 23, 20, 25],
+      "sparkLabel": "Labels / min (last 8h)"
+    },
+    {
+      "id": "g-carrier",
+      "section": "live",
+      "region": "global",
+      "name": "Carrier Performance Monitor",
+      "description": "Live cost-per-zone, on-time delivery rates, and routing efficiency — flags carriers where Managed Shipping is running above-target cost relative to benchmark.",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    }
+  ]
+}

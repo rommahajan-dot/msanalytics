@@ -1,5 +1,5 @@
 import { generateText } from 'ai'
-import { buildReports, GLOSSARY, isRegion, REGIONS } from '@/lib/reports-config'
+import { GLOSSARY, isRegion, REGIONS, reportsForRegion } from '@/lib/reports-config'
 
 export const maxDuration = 30
 
@@ -13,11 +13,11 @@ export async function POST(req: Request) {
   }
 
   const regionName = REGIONS.find((r) => r.id === region)!.name
-  const reports = buildReports(region)
+  const reports = reportsForRegion(region)
   const catalog = reports
     .map(
       (r) =>
-        `- ${r.title} [${r.status}, ${r.cadence}]: ${r.description}${
+        `- ${r.name} [${r.status}, ${r.cadence}]: ${r.description}${
           r.sparkline.length >= 2 ? ` Series (${r.sparkLabel}): ${r.sparkline.join(', ')}.` : ''
         }`,
     )

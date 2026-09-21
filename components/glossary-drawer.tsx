@@ -21,7 +21,7 @@ export function GlossaryDrawer({
   useOverlay(open, onClose)
 
   const titleById = useMemo(
-    () => Object.fromEntries(reports.map((r) => [r.id, r.title])),
+    () => Object.fromEntries(reports.map((r) => [r.id, r.name])),
     [reports],
   )
 
@@ -32,7 +32,7 @@ export function GlossaryDrawer({
       (g) =>
         g.term.toLowerCase().includes(term) ||
         g.definition.toLowerCase().includes(term) ||
-        (g.formula ?? '').toLowerCase().includes(term),
+        (g.note ?? '').toLowerCase().includes(term),
     )
   }, [q])
 
@@ -81,12 +81,12 @@ export function GlossaryDrawer({
           {filtered.map((g) => (
             <div key={g.term} className="py-4">
               <h3 className="font-brand text-[0.85rem] font-semibold text-ms-txt">{g.term}</h3>
-              {g.formula && (
-                <code className="mt-1.5 block rounded border border-ms-border bg-ms-bg px-2 py-1 font-mono text-[0.68rem] text-ms-accent">
-                  {g.formula}
-                </code>
-              )}
               <p className="mt-2 text-[0.77rem] leading-relaxed text-ms-txt2">{g.definition}</p>
+              {g.note && (
+                <p className="mt-1.5 text-[0.72rem] italic leading-relaxed text-ms-txt3">
+                  {g.note}
+                </p>
+              )}
               {g.relatedReportIds.length > 0 && (
                 <div className="mt-2.5 flex flex-wrap gap-1.5">
                   {g.relatedReportIds

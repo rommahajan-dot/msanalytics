@@ -3,38 +3,38 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { BookOpen, Command, Search } from 'lucide-react'
 import {
-  CATEGORIES,
-  categoryQuestion,
   portalStats,
+  REPORTS,
+  reportsForRegion,
+  SECTIONS,
   type RegionId,
-  type Report,
 } from '@/lib/reports-config'
 import { SiteHeader } from '@/components/site-header'
 import { ExecutiveTldr } from '@/components/executive-tldr'
 import { ReportCard } from '@/components/report-card'
-import { SqlDialog } from '@/components/sql-dialog'
 import { GlossaryDrawer } from '@/components/glossary-drawer'
 import { CommandMenu } from '@/components/command-menu'
 import { cn } from '@/lib/utils'
 
-type Filter = 'all' | 'live' | 'fresh' | 'planned' | 'sql'
+type Filter = 'all' | 'Current' | 'Live' | 'Planned'
 
 const FILTERS: { id: Filter; label: string }[] = [
   { id: 'all', label: 'All' },
-  { id: 'fresh', label: 'Current' },
-  { id: 'live', label: 'Live' },
-  { id: 'sql', label: 'SQL available' },
-  { id: 'planned', label: 'Planned' },
+  { id: 'Current', label: 'Current' },
+  { id: 'Live', label: 'Live' },
+  { id: 'Planned', label: 'Planned' },
 ]
 
-export function Portal({ region, reports }: { region: RegionId; reports: Report[] }) {
+export function Portal() {
+  const [region, setRegion] = useState<RegionId>('global')
   const [search, setSearch] = useState('')
   const [filter, setFilter] = useState<Filter>('all')
-  const [sqlReport, setSqlReport] = useState<Report | null>(null)
   const [glossaryOpen, setGlossaryOpen] = useState(false)
   const [commandOpen, setCommandOpen] = useState(false)
 
-  const stats = useMemo(() => portalStats(reports), [reports])
+  // Reports scoped to the selected region ("Global" shows all).
+  const regionReports = useMemo(() => reportsForRegion(region), [region])
+  const stats = useMemo(() => portalStats(regionReports), [regionReports])
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -49,24 +49,22 @@ export function Portal({ region, reports }: { region: RegionId; reports: Report[
 
   const visible = useMemo(() => {
     const q = search.trim().toLowerCase()
-    return reports.filter((r) => {
-      const matchesFilter =
-        filter === 'all'
-          ? true
-          : filter === 'sql'
-            ? !!r.sqlSnippet
-            : r.status === filter
-      const cat = CATEGORIES.find((c) => c.id === r.questionCategory)
+    return regionReports.filter((r) => {
+      const matchesFilter = filter === 'all' ? true : r.status === filter
+      const section = SECTIONS.find((s) => s.id === r.section)
       const matchesSearch =
         !q ||
-        r.title.toLowerCase().includes(q) ||
+        r.name.toLowerCase().includes(q) ||
         r.description.toLowerCase().includes(q) ||
-        (cat?.tag.toLowerCase().includes(q) ?? false)
+        (section?.tag.toLowerCase().includes(q) ?? false)
       return matchesFilter && matchesSearch
     })
-  }, [reports, search, filter])
+  }, [regionReports, search, filter])
 
+  // Selecting a report from search/glossary: jump to Global so any card is
+  // reachable regardless of the active region tab, then scroll + highlight.
   const selectReport = useCallback((id: string) => {
+    setRegion('global')
     setFilter('all')
     setSearch('')
     setGlossaryOpen(false)
@@ -78,19 +76,22 @@ export function Portal({ region, reports }: { region: RegionId; reports: Report[
         el.scrollIntoView({ behavior: 'smooth', block: 'center' })
         el.classList.add('ring-2', 'ring-ms-accent', 'ring-offset-2', 'ring-offset-ms-bg')
         setTimeout(
-          () => el.classList.remove('ring-2', 'ring-ms-accent', 'ring-offset-2', 'ring-offset-ms-bg'),
+          () =>
+            el.classList.remove('ring-2', 'ring-ms-accent', 'ring-offset-2', 'ring-offset-ms-bg'),
           1600,
         )
-      }, 60)
+      }, 80)
     })
   }, [])
 
+  const regionHasReports = regionReports.length > 0
   const totalMatches = visible.length
 
   return (
     <div className="min-h-dvh bg-ms-bg">
       <SiteHeader
         region={region}
+        onRegionChange={setRegion}
         onOpenCommand={() => setCommandOpen(true)}
         onOpenGlossary={() => setGlossaryOpen(true)}
       />
@@ -105,8 +106,8 @@ export function Portal({ region, reports }: { region: RegionId; reports: Report[
             Every Managed Shipping insight, organized by the question it answers.
           </h1>
           <p className="mt-4 max-w-2xl text-pretty text-[0.95rem] leading-relaxed text-ms-txt2">
-            One home for analyses, trackers, and live monitors — with freshness, source
-            SQL, and history on every report. Ask a question with{' '}
+            One home for analyses, trackers, and live monitors — with freshness and history
+            on every report. Ask a question with{' '}
             <kbd className="inline-flex items-center gap-0.5 rounded border border-ms-border bg-ms-surface px-1.5 py-0.5 font-mono text-[0.72rem] text-ms-txt2">
               <Command className="size-3" />
               K
@@ -118,7 +119,7 @@ export function Portal({ region, reports }: { region: RegionId; reports: Report[
         {/* stats */}
         <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
           <StatChip label="Reports" value={stats.reports} accent="text-ms-txt" dot="bg-ms-slate" />
-          <StatChip label="Current" value={stats.fresh} accent="text-ms-green" dot="bg-ms-green" />
+          <StatChip label="Current" value={stats.current} accent="text-ms-green" dot="bg-ms-green" />
           <StatChip label="Live monitors" value={stats.live} accent="text-ms-violet" dot="bg-ms-violet" />
           <StatChip label="In backlog" value={stats.planned} accent="text-ms-txt2" dot="bg-ms-slate" />
         </div>
@@ -129,7 +130,7 @@ export function Portal({ region, reports }: { region: RegionId; reports: Report[
         </div>
 
         {/* filter bar */}
-        <div className="sticky top-[54px] z-30 -mx-5 mt-10 border-y border-ms-border bg-ms-bg/90 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
+        <div className="sticky top-[95px] z-30 -mx-5 mt-10 border-y border-ms-border bg-ms-bg/90 px-5 py-3 backdrop-blur-md sm:-mx-8 sm:px-8">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2 rounded-md border border-ms-border bg-ms-surface px-3 py-2 sm:w-72">
               <Search className="size-3.5 shrink-0 text-ms-txt3" />
@@ -170,68 +171,76 @@ export function Portal({ region, reports }: { region: RegionId; reports: Report[
 
         {/* sections */}
         <div className="mt-10 flex flex-col gap-14">
-          {CATEGORIES.map((cat) => {
-            const inCat = visible.filter((r) => r.questionCategory === cat.id)
-            if (inCat.length === 0) return null
-            return (
-              <section key={cat.id} id={cat.id} className="scroll-mt-28">
-                <div className="flex items-baseline gap-3 border-b border-ms-border pb-4">
-                  <span className="rounded-[3px] bg-ms-surface-hi px-2 py-0.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-ms-txt3">
-                    {cat.tag}
-                  </span>
-                  <h2 className="font-display text-xl font-semibold tracking-tight text-ms-txt sm:text-2xl">
-                    {categoryQuestion(cat, region)}
-                  </h2>
-                </div>
-                <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-                  {inCat.map((r) => (
-                    <ReportCard key={r.id} report={r} onOpenSql={setSqlReport} />
-                  ))}
-                </div>
-              </section>
-            )
-          })}
-
-          {totalMatches === 0 && (
+          {!regionHasReports ? (
             <div className="rounded-lg border border-dashed border-ms-border py-20 text-center">
-              <p className="text-[0.9rem] text-ms-txt2">No reports match your filters.</p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSearch('')
-                  setFilter('all')
-                }}
-                className="mt-3 font-mono text-[0.72rem] text-ms-accent hover:underline"
-              >
-                Clear filters
-              </button>
+              <p className="text-[0.9rem] text-ms-txt2">
+                No reports available for this region yet.
+              </p>
             </div>
+          ) : (
+            <>
+              {SECTIONS.map((section) => {
+                const inSection = visible.filter((r) => r.section === section.id)
+                if (inSection.length === 0) return null
+                return (
+                  <section key={section.id} id={section.id} className="scroll-mt-40">
+                    <div className="flex flex-wrap items-baseline gap-3 border-b border-ms-border pb-4">
+                      <span className="rounded-[3px] bg-ms-surface-hi px-2 py-0.5 font-mono text-[0.72rem] uppercase tracking-[0.12em] text-ms-txt2">
+                        {section.tag}
+                      </span>
+                      <h2 className="font-display text-xl font-semibold tracking-tight text-ms-txt sm:text-2xl">
+                        {section.question}
+                      </h2>
+                    </div>
+                    <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+                      {inSection.map((r) => (
+                        <ReportCard key={r.id} report={r} />
+                      ))}
+                    </div>
+                  </section>
+                )
+              })}
+
+              {totalMatches === 0 && (
+                <div className="rounded-lg border border-dashed border-ms-border py-20 text-center">
+                  <p className="text-[0.9rem] text-ms-txt2">No reports match your filters.</p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSearch('')
+                      setFilter('all')
+                    }}
+                    className="mt-3 font-mono text-[0.72rem] text-ms-accent hover:underline"
+                  >
+                    Clear filters
+                  </button>
+                </div>
+              )}
+            </>
           )}
         </div>
 
         <footer className="mt-24 border-t border-ms-border pt-8">
           <p className="font-mono text-[0.62rem] leading-relaxed text-ms-txt3">
             Managed Shipping Analytics Suite · Portal rebuilt 2026-09-14 · Freshness and
-            counts derived from the live report registry. Report links, SQL, and live
-            monitors are illustrative in this prototype.
+            counts derived from the live report registry. Report links and live monitors are
+            illustrative in this prototype.
           </p>
         </footer>
       </main>
 
-      <SqlDialog report={sqlReport} onClose={() => setSqlReport(null)} />
       <GlossaryDrawer
         open={glossaryOpen}
         onClose={() => setGlossaryOpen(false)}
-        reports={reports}
+        reports={REPORTS}
         onSelectReport={selectReport}
       />
       <CommandMenu
         open={commandOpen}
         onClose={() => setCommandOpen(false)}
         region={region}
-        reports={reports}
+        reports={REPORTS}
         onSelectReport={selectReport}
-        onOpenSql={setSqlReport}
       />
     </div>
   )

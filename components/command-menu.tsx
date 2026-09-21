@@ -3,12 +3,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { CornerDownLeft, FileText, Loader2, Search, Sparkles } from 'lucide-react'
-import {
-  CATEGORIES,
-  STATUS_META,
-  type RegionId,
-  type Report,
-} from '@/lib/reports-config'
+import { SECTIONS, STATUS_META, type RegionId, type Report } from '@/lib/reports-config'
 import { useOverlay } from '@/hooks/use-overlay'
 import { cn } from '@/lib/utils'
 
@@ -18,14 +13,12 @@ export function CommandMenu({
   region,
   reports,
   onSelectReport,
-  onOpenSql,
 }: {
   open: boolean
   onClose: () => void
   region: RegionId
   reports: Report[]
   onSelectReport: (id: string) => void
-  onOpenSql: (r: Report) => void
 }) {
   const [q, setQ] = useState('')
   const [answer, setAnswer] = useState<string | null>(null)
@@ -49,12 +42,12 @@ export function CommandMenu({
     const term = q.trim().toLowerCase()
     if (!term) return reports
     return reports.filter((r) => {
-      const cat = CATEGORIES.find((c) => c.id === r.questionCategory)
+      const section = SECTIONS.find((s) => s.id === r.section)
       return (
-        r.title.toLowerCase().includes(term) ||
+        r.name.toLowerCase().includes(term) ||
         r.description.toLowerCase().includes(term) ||
-        (cat?.tag.toLowerCase().includes(term) ?? false) ||
-        r.status.includes(term)
+        (section?.tag.toLowerCase().includes(term) ?? false) ||
+        r.status.toLowerCase().includes(term)
       )
     })
   }, [q, reports])
@@ -158,33 +151,34 @@ export function CommandMenu({
           {/* report results */}
           <div className="p-1.5">
             <p className="px-2.5 pb-1 pt-2 font-mono text-[0.56rem] uppercase tracking-[0.14em] text-ms-txt3">
-              {q.trim() ? `${results.length} matching report${results.length === 1 ? '' : 's'}` : 'All reports'}
+              {q.trim()
+                ? `${results.length} matching report${results.length === 1 ? '' : 's'}`
+                : 'All reports'}
             </p>
             {results.map((r) => {
-              const cat = CATEGORIES.find((c) => c.id === r.questionCategory)
+              const section = SECTIONS.find((s) => s.id === r.section)
               return (
                 <button
                   key={r.id}
                   type="button"
-                  onClick={() => (r.sqlSnippet && r.status === 'stale' ? (onOpenSql(r), onClose()) : activate(r))}
+                  onClick={() => activate(r)}
                   className="flex w-full items-center gap-3 rounded-md px-2.5 py-2 text-left transition-colors hover:bg-ms-surface-hi"
                 >
                   <FileText className="size-4 shrink-0 text-ms-txt3" />
                   <span className="min-w-0 flex-1">
                     <span className="block truncate text-[0.82rem] font-medium text-ms-txt">
-                      {r.title}
+                      {r.name}
                     </span>
                     <span className="block truncate font-mono text-[0.6rem] text-ms-txt3">
-                      {cat?.tag} · {STATUS_META[r.status].label}
+                      {section?.tag} · {STATUS_META[r.status].label}
                     </span>
                   </span>
                   <span
                     className={cn(
                       'size-1.5 shrink-0 rounded-full',
-                      r.status === 'fresh' && 'bg-ms-green',
-                      r.status === 'live' && 'bg-ms-violet',
-                      r.status === 'stale' && 'bg-ms-amber',
-                      r.status === 'planned' && 'bg-ms-slate',
+                      r.status === 'Current' && 'bg-ms-green',
+                      r.status === 'Live' && 'bg-ms-violet',
+                      r.status === 'Planned' && 'bg-ms-slate',
                     )}
                   />
                 </button>

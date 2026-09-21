@@ -1,10 +1,15 @@
 'use client'
 
-import Link from 'next/link'
 import { REGIONS, type RegionId } from '@/lib/reports-config'
 import { cn } from '@/lib/utils'
 
-export function RegionSwitcher({ region }: { region: RegionId }) {
+export function RegionSwitcher({
+  region,
+  onRegionChange,
+}: {
+  region: RegionId
+  onRegionChange: (r: RegionId) => void
+}) {
   return (
     <div
       role="group"
@@ -14,19 +19,20 @@ export function RegionSwitcher({ region }: { region: RegionId }) {
       {REGIONS.map((r) => {
         const active = r.id === region
         return (
-          <Link
+          <button
             key={r.id}
-            href={`/${r.id}`}
-            aria-current={active ? 'page' : undefined}
+            type="button"
+            onClick={() => onRegionChange(r.id)}
+            aria-pressed={active}
             className={cn(
               'rounded-[5px] px-2.5 py-1 font-mono text-[0.66rem] font-medium tracking-wide transition-colors',
               active
-                ? 'bg-ms-accent-sub text-ms-accent'
+                ? 'bg-ms-accent text-white'
                 : 'text-ms-txt3 hover:text-ms-txt2',
             )}
           >
             {r.label}
-          </Link>
+          </button>
         )
       })}
     </div>

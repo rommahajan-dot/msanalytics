@@ -1,5 +1,5 @@
-import { redirect } from 'next/navigation'
+import { Portal } from '@/components/portal'
 
 export default function Home() {
-  redirect('/us')
+  return <Portal />
 }

@@ -1,7 +1,7 @@
 'use client'
 
 import { Command, Search } from 'lucide-react'
-import { REGIONS, type RegionId } from '@/lib/reports-config'
+import type { RegionId } from '@/lib/reports-config'
 import { RegionSwitcher } from '@/components/region-switcher'
 import { ThemeToggle } from '@/components/theme-toggle'
 
@@ -9,30 +9,30 @@ const NAV = [
   { href: '#wbr', label: 'WBR' },
   { href: '#funnel', label: 'Funnel' },
   { href: '#expansion', label: 'Expansion' },
-  { href: '#loss', label: 'Loss & Cost' },
+  { href: '#loss_cost', label: 'Loss & Cost' },
   { href: '#live', label: 'Live' },
 ]
 
 export function SiteHeader({
   region,
+  onRegionChange,
   onOpenCommand,
   onOpenGlossary,
 }: {
   region: RegionId
+  onRegionChange: (r: RegionId) => void
   onOpenCommand: () => void
   onOpenGlossary: () => void
 }) {
-  const label = REGIONS.find((r) => r.id === region)!.label
-
   return (
     <header className="sticky top-0 z-40 border-b border-ms-border bg-ms-bg/85 backdrop-blur-md">
       <div className="mx-auto flex h-[54px] max-w-[1140px] items-center justify-between gap-4 px-5 sm:px-8">
-        <div className="flex items-baseline gap-2.5">
+        <div className="flex items-baseline gap-2">
           <span className="font-brand text-[0.9rem] font-bold tracking-tight text-ms-txt">
-            Managed Shipping {label}
+            Managed Shipping
           </span>
           <span className="font-mono text-[0.6rem] uppercase tracking-[0.12em] text-ms-txt3">
-            Analytics
+            Analytics Suite
           </span>
         </div>
 
@@ -69,8 +69,17 @@ export function SiteHeader({
               K
             </kbd>
           </button>
-          <RegionSwitcher region={region} />
           <ThemeToggle />
+        </div>
+      </div>
+
+      {/* region tabs */}
+      <div className="border-t border-ms-border bg-ms-bg/60">
+        <div className="mx-auto flex max-w-[1140px] items-center gap-3 overflow-x-auto px-5 py-2 sm:px-8">
+          <span className="shrink-0 font-mono text-[0.58rem] uppercase tracking-[0.14em] text-ms-txt3">
+            Region
+          </span>
+          <RegionSwitcher region={region} onRegionChange={onRegionChange} />
         </div>
       </div>
     </header>
