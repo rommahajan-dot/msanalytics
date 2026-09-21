@@ -81,10 +81,10 @@
       "status": "Current",
       "cadence": "Weekly",
       "generatedDate": "2026-09-07",
-      "latestUrl": "https://analytics.internal/ms/WBR-20260907.html",
+      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/WBR-20260907.html",
       "history": [
-        { "date": "2026-08-31", "url": "https://analytics.internal/ms/WBR-20260831.html" },
-        { "date": "2026-08-24", "url": "https://analytics.internal/ms/WBR-20260824.html" }
+        { "date": "2026-08-31", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/WBR-20260831.html" },
+        { "date": "2026-08-24", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/WBR-20260824.html" }
       ],
       "sparkline": [812, 903, 878, 951, 1002, 1044, 1090, 1137],
       "sparkLabel": "Weekly label volume (k)"
@@ -97,28 +97,28 @@
       "description": "Counterfactual view showing the same metrics absent experiment treatment — isolates the incremental effect of managed shipping changes from underlying market movement.",
       "status": "Current",
       "cadence": "Weekly",
-      "generatedDate": "2026-09-07",
-      "latestUrl": "https://analytics.internal/ms/WBR-BAU-20260907.html",
-      "history": [],
+      "generatedDate": "2026-09-14",
+      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/WBR-20260914-BAU.html",
+      "history": [
+        { "date": "2026-09-07", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/WBR-20260907-BAU.html" }
+      ],
       "sparkline": [800, 815, 822, 831, 845, 858, 869, 880],
       "sparkLabel": "BAU baseline volume (k)"
     },
     {
       "id": "uk-wbr",
-      "notes": "UK-scoped cut of the WBR. Only appears under the UK region tab. Runs a week behind the global WBR because UK carrier-recovery data settles later.",
+      "notes": "UK-scoped cut of the WBR. No published snapshot found in any UK-region repo during URL verification (2026-09-20) — set to Planned pending a real source.",
       "section": "wbr",
       "region": "uk",
       "name": "UK Weekly Business Review",
       "description": "UK-specific weekly review of GMV, label volumes, and adoption, with carrier mix and seller anomalies scoped to the United Kingdom program.",
-      "status": "Current",
-      "cadence": "Weekly",
-      "generatedDate": "2026-09-05",
-      "latestUrl": "https://analytics.internal/ms/UK-WBR-20260905.html",
-      "history": [
-        { "date": "2026-08-29", "url": "https://analytics.internal/ms/UK-WBR-20260829.html" }
-      ],
-      "sparkline": [341, 358, 372, 366, 389, 401, 418, 437],
-      "sparkLabel": "Weekly label volume (k)"
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
     },
     {
       "id": "g-funnel",
@@ -130,23 +130,29 @@
       "status": "Current",
       "cadence": "Ad-hoc",
       "generatedDate": "2026-09-08",
-      "latestUrl": "https://analytics.internal/ms/Order-to-Label-Funnel-20260908.html",
+      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-Order-to-Label-Funnel-20260908.html",
       "history": [],
       "sparkline": [100, 88, 74, 61, 58, 55, 52, 49],
       "sparkLabel": "Conversion by step (%)"
     },
     {
       "id": "g-eligibility",
-      "notes": "Newest snapshot (2026-09-14) is used as 'Open latest'. The sparkline traces the eligible population shrinking through each gate — ramp, category, price, weight, prohibited items — down to the final MS-eligible set.",
+      "notes": "Newest snapshot (2026-09-20) is used as 'Open latest'. The sparkline traces the eligible population shrinking through each gate — ramp, category, price, weight, prohibited items — down to the final MS-eligible set.",
       "section": "funnel",
       "region": "global",
       "name": "Eligibility Waterfall",
       "description": "Total C2C sellers, orders, and FNLs stepped down through each eligibility gate — ramp, category, price point, weight, prohibited items — to the final MS eligible population.",
       "status": "Current",
       "cadence": "Weekly",
-      "generatedDate": "2026-09-14",
-      "latestUrl": "https://analytics.internal/ms/Eligibility-Waterfall-20260914.html",
-      "history": [],
+      "generatedDate": "2026-09-20",
+      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Eligibility-Waterfall-20260920.html",
+      "history": [
+        { "date": "2026-09-19", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Eligibility-Waterfall-20260919.html" },
+        { "date": "2026-09-17", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Eligibility-Waterfall-20260917.html" },
+        { "date": "2026-09-16", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Eligibility-Waterfall-20260916.html" },
+        { "date": "2026-09-15", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Eligibility-Waterfall-20260915.html" },
+        { "date": "2026-09-14", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Eligibility-Waterfall-20260914.html" }
+      ],
       "sparkline": [100, 92, 81, 70, 58, 47, 39, 33],
       "sparkLabel": "Population through gates (%)"
     },
@@ -167,17 +173,18 @@
     },
     {
       "id": "us-expansion",
-      "notes": "US expansion tracker with one prior snapshot in history. The cumulative-enrollment sparkline is the clearest signal that the US rollout is the furthest along of any region.",
+      "notes": "US expansion tracker. Two prior snapshots kept in history. The cumulative-enrollment sparkline is the clearest signal that the US rollout is the furthest along of any region.",
       "section": "expansion",
       "region": "us",
       "name": "US Expansion Analysis",
       "description": "Geographic rollout progress, seller adoption, volume ramp, and week-over-week expansion velocity across newly enrolled United States cohorts.",
       "status": "Current",
       "cadence": "Weekly",
-      "generatedDate": "2026-09-07",
-      "latestUrl": "https://analytics.internal/ms/US-Expansion-20260907.html",
+      "generatedDate": "2026-09-14",
+      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Expansion-20260914.html",
       "history": [
-        { "date": "2026-08-31", "url": "https://analytics.internal/ms/US-Expansion-20260831.html" }
+        { "date": "2026-09-07", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Expansion-20260907.html" },
+        { "date": "2026-08-31", "url": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/MS-US-Expansion-20260831.html" }
       ],
       "sparkline": [120, 180, 265, 360, 470, 590, 705, 838],
       "sparkLabel": "Sellers enrolled (cumulative)"
@@ -199,48 +206,48 @@
     },
     {
       "id": "uk-expansion",
-      "notes": "UK rollout tracker. No history yet — first snapshot published 2026-09-05. Ramp is slower than the US, which is expected for a later-launched market.",
+      "notes": "UK rollout tracker. No published snapshot found in the UK repo during URL verification (2026-09-20) — set to Planned pending a real source.",
       "section": "expansion",
       "region": "uk",
       "name": "UK Expansion Analysis",
       "description": "Rollout progress and seller adoption across the United Kingdom, with volume ramp and week-over-week expansion velocity for newly enrolled cohorts.",
-      "status": "Current",
-      "cadence": "Weekly",
-      "generatedDate": "2026-09-05",
-      "latestUrl": "https://analytics.internal/ms/UK-Expansion-20260905.html",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
       "history": [],
-      "sparkline": [40, 72, 118, 165, 214, 268, 321, 372],
-      "sparkLabel": "Sellers enrolled (cumulative)"
+      "sparkline": [],
+      "sparkLabel": ""
     },
     {
       "id": "de-expansion",
-      "notes": "Germany rollout tracker, launched more recently than the UK — hence the lower cumulative enrollment. Paired with the DE VI Funnel card under the DE tab.",
+      "notes": "Germany rollout tracker. No published snapshot found in any DE-region repo during URL verification (2026-09-20) — set to Planned pending a real source.",
       "section": "expansion",
       "region": "de",
       "name": "DE Expansion Analysis",
       "description": "Rollout progress and seller adoption across Germany, tracking volume ramp and expansion velocity for the newly launched cohorts.",
-      "status": "Current",
-      "cadence": "Weekly",
-      "generatedDate": "2026-09-03",
-      "latestUrl": "https://analytics.internal/ms/DE-Expansion-20260903.html",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
       "history": [],
-      "sparkline": [12, 28, 51, 82, 121, 168, 219, 271],
-      "sparkLabel": "Sellers enrolled (cumulative)"
+      "sparkline": [],
+      "sparkLabel": ""
     },
     {
       "id": "de-vi",
-      "notes": "Variant-item funnel scoped to the German cohort. Ad-hoc cut; the sparkline tracks VI label adoption climbing toward the BAU funnel rate as the cohort matures.",
+      "notes": "Variant-item funnel scoped to the German cohort. No published snapshot found for a DE-scoped VI funnel during URL verification (2026-09-20) — the corp repo's only VI funnel is US-scoped. Set to Planned pending a real DE source.",
       "section": "expansion",
       "region": "de",
       "name": "Expansion — VI Funnel",
       "description": "Variant item (VI) eligibility and label adoption within the German expansion cohort — tracks which VI categories are converting vs. where the rate lags the BAU funnel.",
-      "status": "Current",
-      "cadence": "Ad-hoc",
-      "generatedDate": "2026-09-03",
-      "latestUrl": "https://analytics.internal/ms/DE-Expansion-VI-20260903.html",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
       "history": [],
-      "sparkline": [38, 41, 40, 44, 46, 49, 48, 52],
-      "sparkLabel": "VI label adoption (%)"
+      "sparkline": [],
+      "sparkLabel": ""
     },
     {
       "id": "fr-expansion",
@@ -274,18 +281,18 @@
     },
     {
       "id": "au-expansion",
-      "notes": "Australia rollout tracker. Current and generated weekly. AU also runs a live M2M monitor, so it is the only non-US/global region with a Live card.",
+      "notes": "Australia rollout tracker. No published snapshot found in the AU-region repo during URL verification (2026-09-20) — set to Planned pending a real source.",
       "section": "expansion",
       "region": "au",
       "name": "AU Expansion Analysis",
       "description": "Rollout progress and seller adoption across Australia, tracking volume ramp and expansion velocity for newly enrolled cohorts.",
-      "status": "Current",
-      "cadence": "Weekly",
-      "generatedDate": "2026-09-01",
-      "latestUrl": "https://analytics.internal/ms/AU-Expansion-20260901.html",
+      "status": "Planned",
+      "cadence": "Planned",
+      "generatedDate": null,
+      "latestUrl": null,
       "history": [],
-      "sparkline": [18, 33, 55, 79, 104, 132, 161, 190],
-      "sparkLabel": "Sellers enrolled (cumulative)"
+      "sparkline": [],
+      "sparkLabel": ""
     },
     {
       "id": "us-gplt",
@@ -297,7 +304,7 @@
       "status": "Current",
       "cadence": "Ad-hoc",
       "generatedDate": "2026-09-09",
-      "latestUrl": "https://analytics.internal/ms/US-GPLT-Shortpaid-20260909.html",
+      "latestUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US/GPLT-Shortpaid-20260909.html",
       "history": [],
       "sparkline": [64, 71, 68, 77, 73, 81, 88, 84],
       "sparkLabel": "Weekly shortpaid loss ($k)"
@@ -349,18 +356,18 @@
     },
     {
       "id": "au-m2m",
-      "notes": "AU-scoped instance of the live M2M monitor, pointing at the /au path of the same service. Appears under both the Global (Live section) and AU tabs.",
+      "notes": "AU-scoped instance of the live M2M monitor. The global M2M Insights Monitor URL was confirmed against the corp repo's own README, but this /au path could not be verified against any local source during the 2026-09-20 check — set to Planned pending confirmation.",
       "section": "live",
       "region": "au",
       "name": "M2M Insights Monitor — AU",
       "description": "Live operational dashboard for Australian Managed-to-Managed shipping: real-time label rates, seller activity, and carrier routing across AU zones.",
-      "status": "Live",
-      "cadence": "On demand",
+      "status": "Planned",
+      "cadence": "Planned",
       "generatedDate": null,
-      "latestUrl": "https://m2minsights-m2minsights.vip.ebay.com/au",
+      "latestUrl": null,
       "history": [],
-      "sparkline": [14, 17, 15, 21, 19, 23, 20, 25],
-      "sparkLabel": "Labels / min (last 8h)"
+      "sparkline": [],
+      "sparkLabel": ""
     },
     {
       "id": "g-carrier",
