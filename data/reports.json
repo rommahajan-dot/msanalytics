@@ -383,6 +383,51 @@
       "history": [],
       "sparkline": [],
       "sparkLabel": ""
+    },
+    {
+      "id": "uk-ms",
+      "notes": "Live Tableau workbook link, not a static HTML snapshot — no history or generatedDate to track.",
+      "section": "wbr",
+      "region": "uk",
+      "name": "MS UK",
+      "description": "Tableau workbook for the UK Managed Shipping weekly business review.",
+      "status": "Live",
+      "cadence": "On demand",
+      "generatedDate": null,
+      "latestUrl": "https://tableau.corp.ebay.com/#/workbooks/240877/views",
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "us-ms",
+      "notes": "Live Tableau workbook link, not a static HTML snapshot — no history or generatedDate to track.",
+      "section": "wbr",
+      "region": "us",
+      "name": "MS US",
+      "description": "Tableau workbook for the US Managed Shipping weekly business review.",
+      "status": "Live",
+      "cadence": "On demand",
+      "generatedDate": null,
+      "latestUrl": "https://tableau.corp.ebay.com/#/workbooks/246032/views",
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
+    },
+    {
+      "id": "eu-ms",
+      "notes": "Live Tableau workbook link, not a static HTML snapshot — no history or generatedDate to track.",
+      "section": "wbr",
+      "region": "eu",
+      "name": "MS Intra-EU",
+      "description": "Tableau workbook for the Intra-EU Managed Shipping weekly business review.",
+      "status": "Live",
+      "cadence": "On demand",
+      "generatedDate": null,
+      "latestUrl": "https://tableau.corp.ebay.com/#/workbooks/246841/views",
+      "history": [],
+      "sparkline": [],
+      "sparkLabel": ""
     }
   ]
 }
