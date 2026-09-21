@@ -1,12 +1,16 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { BookOpen, Command, Search } from 'lucide-react'
+import { BookOpen, Command, ExternalLink, Search, TriangleAlert } from 'lucide-react'
 import {
+  CURATION_NOTES,
+  LAST_CURATED,
+  PORTAL_NAME,
   portalStats,
   REPORTS,
   reportsForRegion,
   SECTIONS,
+  SOURCE_REPO,
   type RegionId,
 } from '@/lib/reports-config'
 import { SiteHeader } from '@/components/site-header'
@@ -221,10 +225,10 @@ export function Portal() {
         </div>
 
         <footer className="mt-24 border-t border-ms-border pt-8">
-          <p className="font-mono text-[0.62rem] leading-relaxed text-ms-txt3">
-            Managed Shipping Analytics Suite · Portal rebuilt 2026-09-14 · Freshness and
-            counts derived from the live report registry. Report links and live monitors are
-            illustrative in this prototype.
+          <ProvenancePanel />
+          <p className="mt-6 font-mono text-[0.62rem] leading-relaxed text-ms-txt3">
+            {PORTAL_NAME} · Freshness and counts derived from the report registry. Report links
+            and live monitors are illustrative in this prototype.
           </p>
         </footer>
       </main>
@@ -242,6 +246,67 @@ export function Portal() {
         reports={REPORTS}
         onSelectReport={selectReport}
       />
+    </div>
+  )
+}
+
+// A curation note is flagged as a caveat (amber) when it reports a data
+// inconsistency or a thing that needs review, rather than a routine choice.
+const CAVEAT_RE = /inconsisten|secret|mismatch|discrepan|conflict|review/i
+
+function ProvenancePanel() {
+  const hasNotes = CURATION_NOTES.length > 0
+  if (!hasNotes && !SOURCE_REPO) return null
+
+  return (
+    <div className="rounded-lg border border-ms-border bg-ms-surface p-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <div>
+          <h2 className="font-display text-sm font-semibold tracking-tight text-ms-txt">
+            Provenance &amp; caveats
+          </h2>
+          {LAST_CURATED && (
+            <p className="mt-0.5 font-mono text-[0.6rem] uppercase tracking-[0.1em] text-ms-txt3">
+              Last curated {LAST_CURATED}
+            </p>
+          )}
+        </div>
+        {SOURCE_REPO && (
+          <a
+            href={SOURCE_REPO}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 rounded-md border border-ms-border px-2.5 py-1 font-mono text-[0.62rem] tracking-wide text-ms-txt2 transition-colors hover:border-ms-accent hover:text-ms-accent"
+          >
+            <ExternalLink className="size-3" /> Source repo
+          </a>
+        )}
+      </div>
+
+      {hasNotes && (
+        <ul className="mt-4 flex flex-col gap-2.5">
+          {CURATION_NOTES.map((note, i) => {
+            const isCaveat = CAVEAT_RE.test(note)
+            return (
+              <li key={i} className="flex gap-2.5">
+                {isCaveat ? (
+                  <TriangleAlert className="mt-0.5 size-3.5 shrink-0 text-ms-amber" />
+                ) : (
+                  <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-ms-slate" />
+                )}
+                <p
+                  className={cn(
+                    'max-w-3xl text-[0.76rem] leading-[1.6]',
+                    isCaveat ? 'text-ms-txt' : 'text-ms-txt2',
+                  )}
+                >
+                  {note}
+                </p>
+              </li>
+            )
+          })}
+        </ul>
+      )}
     </div>
   )
 }

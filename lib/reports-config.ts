@@ -38,6 +38,7 @@ export interface Report {
   history: HistoryLink[]
   sparkline: number[]
   sparkLabel: string
+  notes?: string
 }
 
 export interface GlossaryTerm {
@@ -51,6 +52,10 @@ interface ReportsFile {
   meta: {
     portalName: string
     portalDate: string
+    sourceRepo?: string
+    pagesBaseUrl?: string
+    lastCurated?: string
+    curationNotes?: string[]
     glossary: GlossaryTerm[]
   }
   reports: Report[]
@@ -61,6 +66,10 @@ const DATA = reportsData as ReportsFile
 // ── Public data ───────────────────────────────────────────────────────────────
 export const PORTAL_NAME = DATA.meta.portalName
 export const PORTAL_DATE = DATA.meta.portalDate
+export const SOURCE_REPO = DATA.meta.sourceRepo ?? null
+export const PAGES_BASE_URL = DATA.meta.pagesBaseUrl ?? null
+export const LAST_CURATED = DATA.meta.lastCurated ?? null
+export const CURATION_NOTES: string[] = DATA.meta.curationNotes ?? []
 export const REPORTS: Report[] = DATA.reports
 export const GLOSSARY: GlossaryTerm[] = DATA.meta.glossary
 

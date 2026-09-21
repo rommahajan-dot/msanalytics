@@ -51,6 +51,7 @@ function cadenceBadge(r: Report): string | null {
 
 export function ReportCard({ report }: { report: Report }) {
   const [open, setOpen] = useState(false)
+  const [notesOpen, setNotesOpen] = useState(false)
   const cb = cadenceBadge(report)
 
   return (
@@ -140,6 +141,26 @@ export function ReportCard({ report }: { report: Report }) {
           </span>
         )}
       </div>
+
+      {/* why this card looks like this */}
+      {report.notes && (
+        <div className={cn('-mt-2', report.history.length === 0 && 'pb-4')}>
+          <button
+            type="button"
+            onClick={() => setNotesOpen((v) => !v)}
+            aria-expanded={notesOpen}
+            className="flex items-center gap-1.5 font-mono text-[0.62rem] tracking-wide text-ms-txt3 hover:text-ms-txt2"
+          >
+            <ChevronRight className={cn('size-3 transition-transform', notesOpen && 'rotate-90')} />
+            Why this card looks like this
+          </button>
+          {notesOpen && (
+            <p className="mt-2 border-l-2 border-ms-border pl-2.5 text-[0.72rem] leading-[1.55] text-ms-txt2">
+              {report.notes}
+            </p>
+          )}
+        </div>
+      )}
 
       {/* history accordion */}
       {report.history.length > 0 && (

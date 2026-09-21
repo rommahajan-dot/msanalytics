@@ -2,6 +2,15 @@
   "meta": {
     "portalName": "Managed Shipping Analytics Suite",
     "portalDate": "2026-09-14",
+    "sourceRepo": "https://github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US",
+    "pagesBaseUrl": "https://pages.github.corp.ebay.com/Shipping-Analytics/Managed-Shipping-US",
+    "lastCurated": "2026-09-20",
+    "curationNotes": [
+      "Card copy, sectioning, and the status/freshness model were carried over from the hand-built static prototype at docs/Managed-Shipping-Analytics-Suite.html, treated as ground truth.",
+      "Where the repo has published a newer dated snapshot than the one the prototype linked (WBR, Expansion, Eligibility Waterfall), each card points to the newest snapshot as 'Open latest' and keeps the prototype's snapshot in history.",
+      "Source-prototype date inconsistency: its header stats line read 'Portal rebuilt 2026-09-14' while its footer read '2026-09-08'. Reconciled here to 2026-09-14; freshness is computed from that date.",
+      "A secrets-looking file (04-Analysis/secrets.txt) exists in the backing repo. Its contents were not read or exposed here, but a repo backing a public Pages site should have it reviewed and moved to a secret store."
+    ],
     "glossary": [
       {
         "term": "Orders",
@@ -64,6 +73,7 @@
   "reports": [
     {
       "id": "g-wbr",
+      "notes": "The flagship WBR carried over from the source prototype as the 'Current' card. Snapshots are cut weekly; the two most recent are kept in history so you can diff week-over-week.",
       "section": "wbr",
       "region": "global",
       "name": "Weekly Business Review",
@@ -95,6 +105,7 @@
     },
     {
       "id": "uk-wbr",
+      "notes": "UK-scoped cut of the WBR. Only appears under the UK region tab. Runs a week behind the global WBR because UK carrier-recovery data settles later.",
       "section": "wbr",
       "region": "uk",
       "name": "UK Weekly Business Review",
@@ -111,6 +122,7 @@
     },
     {
       "id": "g-funnel",
+      "notes": "Ad-hoc rather than scheduled, so there is no version history yet — each pull overwrites the latest. The declining sparkline is expected: it shows conversion dropping at each funnel step, not a metric getting worse over time.",
       "section": "funnel",
       "region": "global",
       "name": "Order-to-Label Funnel",
@@ -125,6 +137,7 @@
     },
     {
       "id": "g-eligibility",
+      "notes": "Newest snapshot (2026-09-14) is used as 'Open latest'. The sparkline traces the eligible population shrinking through each gate — ramp, category, price, weight, prohibited items — down to the final MS-eligible set.",
       "section": "funnel",
       "region": "global",
       "name": "Eligibility Waterfall",
@@ -139,6 +152,7 @@
     },
     {
       "id": "g-seller-cohort",
+      "notes": "Planned, so it renders in the muted style with no link. Blocked on a longitudinal seller-vintage table that isn't built yet; sits in the backlog until that lands.",
       "section": "funnel",
       "region": "global",
       "name": "Seller Funnel Cohort",
@@ -153,6 +167,7 @@
     },
     {
       "id": "us-expansion",
+      "notes": "US expansion tracker with one prior snapshot in history. The cumulative-enrollment sparkline is the clearest signal that the US rollout is the furthest along of any region.",
       "section": "expansion",
       "region": "us",
       "name": "US Expansion Analysis",
@@ -169,6 +184,7 @@
     },
     {
       "id": "us-adoption",
+      "notes": "Planned follow-on to US Expansion Analysis. Will split enrolled sellers into active / dormant / churned by cohort; not yet built.",
       "section": "expansion",
       "region": "us",
       "name": "Seller Adoption Health",
@@ -183,6 +199,7 @@
     },
     {
       "id": "uk-expansion",
+      "notes": "UK rollout tracker. No history yet — first snapshot published 2026-09-05. Ramp is slower than the US, which is expected for a later-launched market.",
       "section": "expansion",
       "region": "uk",
       "name": "UK Expansion Analysis",
@@ -197,6 +214,7 @@
     },
     {
       "id": "de-expansion",
+      "notes": "Germany rollout tracker, launched more recently than the UK — hence the lower cumulative enrollment. Paired with the DE VI Funnel card under the DE tab.",
       "section": "expansion",
       "region": "de",
       "name": "DE Expansion Analysis",
@@ -211,6 +229,7 @@
     },
     {
       "id": "de-vi",
+      "notes": "Variant-item funnel scoped to the German cohort. Ad-hoc cut; the sparkline tracks VI label adoption climbing toward the BAU funnel rate as the cohort matures.",
       "section": "expansion",
       "region": "de",
       "name": "Expansion — VI Funnel",
@@ -225,6 +244,7 @@
     },
     {
       "id": "fr-expansion",
+      "notes": "France is a pilot market — this is the only FR card in the portal, so the FR tab shows just the Expansion section. Planned until the pilot cohort produces its first settled week.",
       "section": "expansion",
       "region": "fr",
       "name": "FR Expansion Analysis",
@@ -239,6 +259,7 @@
     },
     {
       "id": "it-expansion",
+      "notes": "Italy is a pilot market, mirroring France — the only IT card in the portal. Planned until the pilot cohort settles its first week of label outcomes.",
       "section": "expansion",
       "region": "it",
       "name": "IT Expansion Analysis",
@@ -253,6 +274,7 @@
     },
     {
       "id": "au-expansion",
+      "notes": "Australia rollout tracker. Current and generated weekly. AU also runs a live M2M monitor, so it is the only non-US/global region with a Live card.",
       "section": "expansion",
       "region": "au",
       "name": "AU Expansion Analysis",
@@ -267,6 +289,7 @@
     },
     {
       "id": "us-gplt",
+      "notes": "The only built loss report. Ad-hoc pull, US-scoped. Reads directly against the GPLT Shortpaid glossary definition — carrier charge minus seller recovery, where positive.",
       "section": "loss_cost",
       "region": "us",
       "name": "GPLT Shortpaid Analysis",
@@ -281,6 +304,7 @@
     },
     {
       "id": "g-losses",
+      "notes": "Planned. The HTML report has not been generated yet — lost-in-transit, damaged, and returns losses by reason code are still being modeled. Shown muted with no link.",
       "section": "loss_cost",
       "region": "global",
       "name": "MS Losses Tracker",
@@ -295,6 +319,7 @@
     },
     {
       "id": "g-cogs",
+      "notes": "Planned. Intended to replace ad-hoc Finance COGS pulls with a standing cost-per-label view. Blocked on a reconciled subsidy/recovery feed.",
       "section": "loss_cost",
       "region": "global",
       "name": "Unit Economics / COGS",
@@ -309,6 +334,7 @@
     },
     {
       "id": "g-m2m",
+      "notes": "Live app, not a static snapshot — 'Open app' hits the M2M Insights service, which queries fresh on every load. No history because there are no cut versions. The sparkline is an illustrative last-8h sample.",
       "section": "live",
       "region": "global",
       "name": "M2M Insights Monitor",
@@ -323,6 +349,7 @@
     },
     {
       "id": "au-m2m",
+      "notes": "AU-scoped instance of the live M2M monitor, pointing at the /au path of the same service. Appears under both the Global (Live section) and AU tabs.",
       "section": "live",
       "region": "au",
       "name": "M2M Insights Monitor — AU",
@@ -337,6 +364,7 @@
     },
     {
       "id": "g-carrier",
+      "notes": "Planned live monitor. Will flag carriers running above-target cost per zone. Shown muted with no link until the monitor is stood up.",
       "section": "live",
       "region": "global",
       "name": "Carrier Performance Monitor",
