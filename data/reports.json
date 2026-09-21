@@ -81,7 +81,7 @@
       "status": "Current",
       "cadence": "Weekly",
       "generatedDate": "2026-09-07",
-      "latestUrl": "go/wbr",
+      "latestUrl": "https://go.corp.ebay.com/mswbr",
       "history": [
         { "date": "2026-08-31", "url": "https://ebayinc.sharepoint.com/:x:/r/sites/NASellerShippingAnalytics/Shared%20Documents/Shipping%20Analytics/UK%20Managed%20shipping%20WBR/UK%20MS%20WBR_V2_copy.xlsx?d=w346d586eb3fd450d93ef9b12048e9d49&csf=1&web=1&e=FnefwZ" }
       ],
