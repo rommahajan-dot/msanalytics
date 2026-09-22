@@ -152,7 +152,7 @@
     {
       "id": "us-expansion",
       "notes": "US expansion tracker. Two prior snapshots kept in history. The cumulative-enrollment sparkline is the clearest signal that the US rollout is the furthest along of any region.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "us",
       "name": "US Expansion Analysis",
       "description": "Geographic rollout progress, seller adoption, volume ramp, and week-over-week expansion velocity across newly enrolled United States cohorts.",
@@ -170,7 +170,7 @@
     {
       "id": "us-adoption",
       "notes": "Planned follow-on to US Expansion Analysis. Will split enrolled sellers into active / dormant / churned by cohort; not yet built.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "us",
       "name": "Seller Adoption Health",
       "description": "Active vs. dormant vs. churned sellers by enrollment week. Tracks adoption rate by cohort vintage and surfaces early warning signals for at-risk accounts.",
@@ -185,7 +185,7 @@
     {
       "id": "uk-expansion",
       "notes": "UK rollout tracker. No published snapshot found in the UK repo during URL verification (2026-09-20) — set to Planned pending a real source.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "uk",
       "name": "UK Expansion Analysis",
       "description": "Rollout progress and seller adoption across the United Kingdom, with volume ramp and week-over-week expansion velocity for newly enrolled cohorts.",
@@ -200,7 +200,7 @@
     {
       "id": "de-expansion",
       "notes": "Germany rollout tracker. No published snapshot found in any DE-region repo during URL verification (2026-09-20) — set to Planned pending a real source.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "de",
       "name": "DE Expansion Analysis",
       "description": "Rollout progress and seller adoption across Germany, tracking volume ramp and expansion velocity for the newly launched cohorts.",
@@ -215,7 +215,7 @@
     {
       "id": "de-vi",
       "notes": "Variant-item funnel scoped to the German cohort. No published snapshot found for a DE-scoped VI funnel during URL verification (2026-09-20) — the corp repo's only VI funnel is US-scoped. Set to Planned pending a real DE source.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "de",
       "name": "Expansion — VI Funnel",
       "description": "Variant item (VI) eligibility and label adoption within the German expansion cohort — tracks which VI categories are converting vs. where the rate lags the BAU funnel.",
@@ -230,7 +230,7 @@
     {
       "id": "fr-expansion",
       "notes": "France is a pilot market — this is the only FR card in the portal, so the FR tab shows just the Expansion section. Planned until the pilot cohort produces its first settled week.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "fr",
       "name": "FR Expansion Analysis",
       "description": "Early rollout tracking for France — seller onboarding, first-label activation, and week-over-week ramp for the pilot cohort.",
@@ -245,7 +245,7 @@
     {
       "id": "it-expansion",
       "notes": "Italy is a pilot market, mirroring France — the only IT card in the portal. Planned until the pilot cohort settles its first week of label outcomes.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "it",
       "name": "IT Expansion Analysis",
       "description": "Early rollout tracking for Italy — seller onboarding, first-label activation, and week-over-week ramp for the pilot cohort.",
@@ -260,7 +260,7 @@
     {
       "id": "au-expansion",
       "notes": "Australia rollout tracker. No published snapshot found in the AU-region repo during URL verification (2026-09-20) — set to Planned pending a real source.",
-      "section": "expansion",
+      "section": "deep_dives",
       "region": "au",
       "name": "AU Expansion Analysis",
       "description": "Rollout progress and seller adoption across Australia, tracking volume ramp and expansion velocity for newly enrolled cohorts.",
@@ -275,7 +275,7 @@
     {
       "id": "us-gplt",
       "notes": "The only built loss report. Ad-hoc pull, US-scoped. Reads directly against the GPLT Shortpaid glossary definition — carrier charge minus seller recovery, where positive.",
-      "section": "loss_cost",
+      "section": "deep_dives",
       "region": "us",
       "name": "USPS Shortpaid Analysis",
       "description": "USPS cases where eBay paid carrier charges but recovered less from sellers. Loss by carrier, zone, seller segment, and item type.",
@@ -290,7 +290,7 @@
     {
       "id": "g-losses",
       "notes": "Planned. The HTML report has not been generated yet — lost-in-transit, damaged, and returns losses by reason code are still being modeled. Shown muted with no link.",
-      "section": "loss_cost",
+      "section": "deep_dives",
       "region": "global",
       "name": "MS Losses Tracker",
       "description": "Rolling tracker of lost-in-transit, arrived-damaged, and returns losses by reason code and carrier. The HTML report has not yet been generated.",
@@ -305,7 +305,7 @@
     {
       "id": "g-cogs",
       "notes": "Planned. Intended to replace ad-hoc Finance COGS pulls with a standing cost-per-label view. Blocked on a reconciled subsidy/recovery feed.",
-      "section": "loss_cost",
+      "section": "deep_dives",
       "region": "global",
       "name": "Unit Economics / COGS",
       "description": "Cost per label by carrier and zone: postage cost, eBay subsidy, seller recovery, and net margin. Replaces ad-hoc pulls from Finance COGS.",
@@ -320,7 +320,7 @@
     {
       "id": "g-m2m",
       "notes": "Live app, not a static snapshot — 'Open app' hits the M2M Insights service, which queries fresh on every load. No history because there are no cut versions. The sparkline is an illustrative last-8h sample.",
-      "section": "live",
+      "section": "deep_dives",
       "region": "global",
       "name": "M2M Insights Monitor",
       "description": "Live operational dashboard for Managed-to-Managed shipping: real-time label rates, seller activity, zone distribution, and carrier routing — queried fresh on every load.",
@@ -335,7 +335,7 @@
     {
       "id": "au-m2m",
       "notes": "AU-scoped instance of the live M2M monitor. The global M2M Insights Monitor URL was confirmed against the corp repo's own README, but this /au path could not be verified against any local source during the 2026-09-20 check — set to Planned pending confirmation.",
-      "section": "live",
+      "section": "deep_dives",
       "region": "au",
       "name": "M2M Insights Monitor — AU",
       "description": "Live operational dashboard for Australian Managed-to-Managed shipping: real-time label rates, seller activity, and carrier routing across AU zones.",
@@ -350,7 +350,7 @@
     {
       "id": "g-carrier",
       "notes": "Planned live monitor. Will flag carriers running above-target cost per zone. Shown muted with no link until the monitor is stood up.",
-      "section": "live",
+      "section": "deep_dives",
       "region": "global",
       "name": "Carrier Performance Monitor",
       "description": "Live cost-per-zone, on-time delivery rates, and routing efficiency — flags carriers where Managed Shipping is running above-target cost relative to benchmark.",
