@@ -5,7 +5,7 @@
 import reportsData from '@/data/reports.json'
 
 export type RegionId = 'global' | 'us' | 'uk' | 'de' | 'fr' | 'it' | 'au'
-export type SectionId = 'wbr' | 'funnel' | 'expansion' | 'loss_cost' | 'live'
+export type SectionId = 'wbr' | 'funnel' | 'deep_dives'
 export type ReportStatus = 'Current' | 'Planned' | 'Live'
 
 export interface Region {
@@ -88,7 +88,7 @@ export const SECTIONS: SectionDef[] = [
   {
     id: 'wbr',
     tag: 'WBR & Dashboards',
-    question: 'How is Managed Shipping performing, and what happened this week?',
+    question: 'How is Managed Shipping performing week over week?',
   },
   {
     id: 'funnel',
@@ -96,19 +96,9 @@ export const SECTIONS: SectionDef[] = [
     question: 'Where does order-to-label conversion break down?',
   },
   {
-    id: 'expansion',
-    tag: 'Expansion',
-    question: 'How is the geographic expansion of Managed Shipping progressing?',
-  },
-  {
-    id: 'loss_cost',
-    tag: 'Loss & Cost',
-    question: 'Where is Managed Shipping losing money?',
-  },
-  {
-    id: 'live',
-    tag: 'Live',
-    question: 'What is happening in Managed Shipping right now?',
+    id: 'deep_dives',
+    tag: 'Deep Dives & Tools',
+    question: 'Digging into expansion, cost, loss, and real-time operations.',
   },
 ]
 

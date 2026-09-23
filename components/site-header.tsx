@@ -6,11 +6,9 @@ import { RegionSwitcher } from '@/components/region-switcher'
 import { ThemeToggle } from '@/components/theme-toggle'
 
 const NAV = [
-  { href: '#wbr', label: 'WBR' },
+  { href: '#wbr', label: 'WBR & Dashboards' },
   { href: '#funnel', label: 'Funnel' },
-  { href: '#expansion', label: 'Expansion' },
-  { href: '#loss_cost', label: 'Loss & Cost' },
-  { href: '#live', label: 'Live' },
+  { href: '#deep_dives', label: 'Deep Dives & Tools' },
 ]
 
 export function SiteHeader({
