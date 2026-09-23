@@ -78,9 +78,7 @@
   }
 }
 
-/* Named themes are scoped to :root.<name> (specificity 0,2,0) so they always
-   beat the prefers-color-scheme light defaults above and can be toggled live. */
-:root.light {
+.light {
   --ms-bg: #f3f7fc;
   --ms-surface: #ffffff;
   --ms-surface-hi: #ecf1fa;
@@ -101,7 +99,7 @@
   --ms-txt-3: #7b92b2;
 }
 
-:root.dark {
+.dark {
   --ms-bg: #090c17;
   --ms-surface: #0d1222;
   --ms-surface-hi: #121929;
@@ -120,50 +118,6 @@
   --ms-txt: #dce8f6;
   --ms-txt-2: #7b92b2;
   --ms-txt-3: #48607c;
-}
-
-/* Carbon Console — near-black terminal, amber-gold signal, green/violet status */
-:root.carbon {
-  --ms-bg: #0a0a0b;
-  --ms-surface: #121214;
-  --ms-surface-hi: #1a1a1e;
-  --ms-border: #26262c;
-  --ms-border-hi: #38383f;
-  --ms-accent: #f0b429;
-  --ms-accent-sub: #241a04;
-  --ms-green: #3fb950;
-  --ms-green-sub: #0c2417;
-  --ms-amber: #db6d28;
-  --ms-amber-sub: #241202;
-  --ms-violet: #a371f7;
-  --ms-violet-sub: #1a1229;
-  --ms-slate: #6e7681;
-  --ms-slate-sub: #17171a;
-  --ms-txt: #e6edf3;
-  --ms-txt-2: #8b949e;
-  --ms-txt-3: #57606a;
-}
-
-/* Warm Paper — bone canvas, charcoal ink, oxblood accent (printed-brief feel) */
-:root.paper {
-  --ms-bg: #f4efe6;
-  --ms-surface: #fbf8f2;
-  --ms-surface-hi: #efe8da;
-  --ms-border: #e0d7c6;
-  --ms-border-hi: #cfc3ac;
-  --ms-accent: #9a3324;
-  --ms-accent-sub: #f6e7e2;
-  --ms-green: #3f6212;
-  --ms-green-sub: #eef4e2;
-  --ms-amber: #92400e;
-  --ms-amber-sub: #f7ecd9;
-  --ms-violet: #6d3a9c;
-  --ms-violet-sub: #f0e9f6;
-  --ms-slate: #8c7d63;
-  --ms-slate-sub: #efe9dd;
-  --ms-txt: #2b2419;
-  --ms-txt-2: #5c513d;
-  --ms-txt-3: #8a7c63;
 }
 
 html {
